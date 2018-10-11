@@ -1,0 +1,62 @@
+<html>
+	
+<head>
+<script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript" src="reflow.js"></script>
+
+ <link rel = "stylesheet"
+   type = "text/css"
+   href = "reflow.css" />
+   
+</head>
+
+<body>
+<button class="tablink" onclick="openPage('PWM', this, 'blue')" id="defaultOpen" >PWM</button>
+<button class="tablink" onclick="openPage('PID', this, 'blue')" >PID</button>
+<button class="tablink" onclick="openPage('Reflow_Curve', this, 'blue')">Reflow Curve</button>
+<button class="tablink" onclick="openPage('Configuration', this, 'red')">Configuration</button>
+
+<div id="PWM" class="tabcontent">
+  <h3>PWM-Mode</h3>
+  <div style="float: left; width: 100%; height: 300px;">
+	<div style="float: left; width: 10%; height: 100%;"><input id="myPWMRange"  type="range" class="vranger"/></div>
+	<div id="pwm_div" style="float: left; width: 30%; height: 100%;">
+		<canvas id="pwm_gauge_0" data-title="PWM Level" data-units="%" width="300" height="300" data-major-ticks="0 10 20 30 40 50 60 70 80 90 100" data-type="canv-gauge" data-min-value="0" data-max-value="100" data-highlights="0 7 #4D89F2, 7 10 #25B8D9, 10 12 #0BFF50, 12 14 #cc5, 14 40 #f33" data-onready="setInterval( function() { Gauge.Collection.get('pwm_gauge_0').setValue(pwmLevel);}, 200);"></canvas>
+		<canvas id="pwm_gauge_1" data-title="Temperature" data-units="[&deg;C]" width="300" height="300" data-major-ticks="0 100 200 300" data-type="canv-gauge" data-min-value="0" data-max-value="300" data-highlights="0 20 #4D89F2, 20 26 #25B8D9, 26 30 #0BFF50, 30 45 #cc5, 45 60 #f33" data-onready="setInterval( function() { Gauge.Collection.get('pwm_gauge_1').setValue(currentTemp);}, 200);"></canvas>
+	</div>
+    <div id="chartContainerTempPWM" style="float: left; height: 100%; width: 50%; background: blue;"></div>
+  </div>
+</div>
+
+<div id="PID" class="tabcontent">
+  <h3>PID-Mode</h3>
+  <div style="float: left; width: 100%; height: 300px;">
+	<div style="float: left; width: 10%; height: 100%;"><input id="myPIDRange"  type="range" class="vranger"/></div>
+	<div id="pid_div" style="float: left; width: 30%; height: 100%;">
+		<canvas id="pid_gauge_0" data-title="Target Temperature" data-units="%" width="300" height="300" data-major-ticks="0 100 200 300" data-type="canv-gauge" data-min-value="0" data-max-value="100" data-highlights="0 7 #4D89F2, 7 10 #25B8D9, 10 12 #0BFF50, 12 14 #cc5, 14 40 #f33" data-onready="setInterval( function() { Gauge.Collection.get('pid_gauge_0').setValue(pidLevel);}, 200);"></canvas>
+		<canvas id="pid_gauge_1" data-title="Current Temperature" data-units="[&deg;C]" width="300" height="300" data-major-ticks="0 100 200 300" data-type="canv-gauge" data-min-value="0" data-max-value="300" data-highlights="0 20 #4D89F2, 20 26 #25B8D9, 26 30 #0BFF50, 30 45 #cc5, 45 60 #f33" data-onready="setInterval( function() { Gauge.Collection.get('pid_gauge_1').setValue(currentTemp);}, 200);"></canvas>
+	</div>
+    <div id="chartContainerTempPID" style="float: left; height: 100%; width: 50%; background: red;"></div>
+  </div>
+</div>
+
+<div id="Reflow_Curve" class="tabcontent">
+  <h3>Reflow Curve</h3>
+  <p>Get in touch, or swing by for a cup of coffee.</p>
+</div>
+
+<div id="Configuration" class="tabcontent">
+  <h3>Configuration</h3>
+  <p>Who we are and what we do.</p>
+</div>
+
+<script>
+document.getElementById("defaultOpen").click();
+
+chartAccel.render();
+</script>
+
+</body>
+
+</html>
